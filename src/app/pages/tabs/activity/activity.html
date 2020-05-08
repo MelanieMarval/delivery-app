@@ -1,0 +1,119 @@
+<ion-header>
+    <ion-toolbar class="toolbar-simple">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/app/tabs/wallet"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="without-right">Actividad</ion-title>
+    </ion-toolbar>
+</ion-header>
+<div class="progress-bar-container">
+    <ion-progress-bar type="indeterminate" color="pagami" *ngIf="(reloading || loading) && !error"></ion-progress-bar>
+</div>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="onRefreshToBeVerified($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <ion-item-group *ngIf="!loading && !error && !empty">
+            <ion-card *ngFor="let register of placeSortData(registers)"
+                      class="card card-place" button
+                      [ngClass]="[register.selectedToDelete ? 'animated fadeOut fast': '',
+                                !hasNotification ? '' : 'status-border status-border--'+register.status | lowercase]"
+                      (click)="register.status !== STATUS.REJECTED ? showDetails(register) : register.showReason = !register.showReason">
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col size="11">
+                            <ion-card-subtitle>
+                                {{ register.createTime | date:'d/M/y'}} · {{ register.createTime | date:'shortTime'}} ·
+                                <span [ngClass]="'status--'+register.status | lowercase">{{placeMessageStatus(register.status)}}</span>
+                            </ion-card-subtitle>
+                        </ion-col>
+                        <ion-col size="1" [ngClass]="{'pb-0': register.status === STATUS.INCOMPLETE}">
+                            <ion-icon *ngIf="register.status === STATUS.REJECTED" name="close-circle"></ion-icon>
+                            <ion-icon *ngIf="register.status === STATUS.WAITING" name="time-outline"></ion-icon>
+                            <ion-button class="btn-no-style btn-focus-circle ion-no-padding ion-no-margin"
+                                        *ngIf="register.status === STATUS.INCOMPLETE"
+                                        (click)="confirmDelete(register); $event.stopPropagation(); registers.selectedToDelete = true">
+                                <ion-icon name="trash"  color="danger" size="small"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-avatar class="border-white-1px">
+                                <ion-img [src]="placeThumbnailPhoto(register)"></ion-img>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="10" *ngIf="register.status === STATUS.INCOMPLETE">
+                            <ion-card-title>{{register.location?.addressLine}}</ion-card-title>
+                        </ion-col>
+                        <ion-col size="6" *ngIf="register.status !== STATUS.INCOMPLETE">
+                            <ion-card-title>{{register.name | capitalize}}</ion-card-title>
+                        </ion-col>
+                        <ion-col size="4" class="ion-justify-content-end" *ngIf="register.status !== STATUS.INCOMPLETE">
+                            <ion-text [ngClass]="'status--'+register.status | lowercase">
+                                {{register.status === STATUS.VERIFIED ? '$0.00 USD' : ''}}
+                            </ion-text>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="register.showReason" class="animated fadeInDown faster">
+                        <ion-col size="12">
+                            <ion-row>
+                                <ion-col size="11">
+                                    <ion-card-subtitle>Razon</ion-card-subtitle>
+                                </ion-col>
+                                <ion-col size="1">
+                                    <ion-icon name="chevron-up" size="large"></ion-icon>
+                                </ion-col>
+                                <ion-col size="12">
+                                    <ion-text>{{register.rejectedReason}}</ion-text>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+        </ion-item-group>
+
+        <ion-item-group *ngIf="loading || error">
+            <ion-card class="card card-place" *ngFor="let dummy of ' '.repeat(5).split('')">
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col size="10">
+                            <ion-card-subtitle>
+                                <ion-skeleton-text [animated]="!error" style="width: 85%"></ion-skeleton-text>
+                            </ion-card-subtitle>
+                        </ion-col>
+                        <ion-col size="2">
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-avatar class="border-white-1px">
+                                <ion-skeleton-text></ion-skeleton-text>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="7">
+                            <ion-skeleton-text [animated]="!error" style="width: 70%"></ion-skeleton-text>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-skeleton-text [animated]="!error" style="width: 80%"></ion-skeleton-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+    </ion-list>
+
+    <app-background-empty *ngIf="empty" [title]="'Aun no hay actividad'" height="90"
+                          [text]="'Cuando hayas registrado empresas podras ver los detalles aqui'"></app-background-empty>
+
+</ion-content>

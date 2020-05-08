@@ -1,0 +1,53 @@
+ion-searchbar {
+    height: 30px;
+    font-size: 16px;
+    color: #718096;
+}
+
+ion-searchbar > div > input {
+    padding: 0 !important;
+}
+
+.show-map {
+    opacity: 1;
+}
+
+.unset {
+    border: unset;
+    box-shadow: unset;
+}
+
+.nearby-expanded {
+    border-radius: 8px;
+    background: var(--ion-background-color);
+    padding-bottom: 65px;
+}
+
+.cards-overflow-y {
+    overflow-y: scroll;
+}
+
+.background-white {
+    --background: #444;
+    background: #444;
+    color: #0d0d0d;
+}
+
+.background-global {
+    --background: var(--ion-background-color);
+    background: var(--ion-background-color);
+    transition: ease 1s;
+}
+
+.background-sheet-header {
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    background: var(--ion-background-color);
+}
+
+ion-fab {
+    z-index: 10;
+}
+

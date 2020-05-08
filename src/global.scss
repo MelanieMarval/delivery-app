@@ -1,0 +1,303 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* Animaciones */
+@import "assets/css/animated.min";
+
+/* Headers and toolbars */
+@import "assets/css/headers-toolbars";
+
+/* Inputs and forms */
+@import "assets/css/inputs";
+
+/* Cards and lists containers */
+@import "assets/css/cards";
+
+//input:-internal-autofill-selected {
+//    -webkit-appearance: menulist-button;
+//    background-color: rgb(232, 240, 254) !important;
+//    background-image: none !important;
+//    color: -internal-light-dark-color(black, white) !important;
+//}]
+//input:-internal-autofill-selected {
+//    background-color: transparent;
+//}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border:none !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--ion-background-color) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ***BUTTON IN TUTORIAL AND TERMS*** */
+.footer-button {
+    padding: 17px;
+    background: var(--ion-background-color);
+    ion-col {
+        padding: 0;
+
+        &:nth-child(1) {
+            padding-right: 5px;
+        }
+        &:nth-child(2) {
+            padding-left: 5px;
+        }
+    }
+
+    &.--without-pt {
+        padding-top: 0;
+    }
+    &--div {
+        position: sticky;
+        background: transparent;
+        right: 0;
+        left: 0;
+        top: 100%;
+        bottom: 0;
+    }
+}
+.button-large, .button-small {
+    height: 56px;
+    width: 99%;
+    font-size: 14px;
+    font-weight: normal;
+    border-radius: 5px;
+    text-transform: unset;
+    transition: ease .4s;
+}
+.button-small {
+    height: 36px;
+}
+/* END button */
+/*  ***********************  */
+
+
+/* ***ALERTS IN PROFILE *** */
+.sc-ion-alert-ios-h {
+    --background: var(--ion-color-pagami-surface) !important;
+}
+
+.alert-wrapper {
+    max-width: 90% !important;
+}
+/* END alerts */
+/*  ***********************  */
+
+/* ***PRODUCTS CONTAINER AND ITEMS (STANDARD DESIGN)*** */
+.products {
+    margin: 20px;
+    .product {
+        --border-radius: 3px;
+        margin-bottom: 20px;
+
+        &-image {
+            height: 100%;
+            width: 60px;
+        }
+        &-name {
+            margin-left: 20px;
+        }
+        &-stock {
+            color: var(--ion-color-pagami-text-2nd)
+        }
+        &-price, &-quantity, &-stock {
+            font-size: 12px;
+        }
+    }
+}
+/* END products */
+/*  ***********************  */
+
+/* ***TOAST IN ALL PAGES*** */
+.toast-bottom-custom {
+    width: 95%;
+    transform: translateY(-130px) translateX(3%);
+}
+.toast-bottom-custom-without-tabs {
+    width: 95%;
+    transform: translateY(-80px) translateX(3%);
+}
+/* END toast */
+/*  ***********************  */
+
+/* PROGRESS BAR CONTAINER */
+.progress-bar-container {
+    height: 5px;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+}
+.md + .progress-bar-container {
+    top: 56px;
+}
+.ios + .progress-bar-container {
+    top: 44px;
+}
+/* END progress bar */
+/*  ***********************  */
+
+ion-bottom-drawer {
+    background: transparent !important;
+    --background: transparent !important;
+
+    ion-content {
+        --background: transparent;
+        background: transparent;
+    }
+}
+
+/* ****EXTRAS***** */
+.swiper-pagination-bullet-active {
+    --bullet-background-active: #f6ad55;
+}
+
+.border-white-1px {
+    border: 1px solid #FFFFFF;
+}
+
+.avatar-square {
+    --border-radius: 0;
+    margin: 0;
+}
+
+.size-icon-default {
+    width: 24px;
+    height: 24px;
+}
+.icon-white{
+    filter: invert(97%) sepia(0%) saturate(7494%) hue-rotate(187deg) brightness(102%) contrast(103%);
+}
+
+.fab-corner-lr {
+    bottom: 16px;
+    right: 16px;
+}
+
+.background-transparent {
+    --background: transparent !important;
+    background: transparent !important;
+}
+.with-overflow-y {
+    overflow-y: scroll !important;
+}
+.auto-overflow-y {
+    overflow-y: auto !important;
+}
+.d-none {
+    display: none !important;
+}
+.d-flex {
+    display: flex;
+}
+.d-inline {
+    display: inline !important;
+}
+.w-100 {
+    width: 100% !important;
+}
+.h-100 {
+    height: 100% !important;
+}
+.p-relative {
+    position: relative;
+}
+.mt-0 {
+    margin-top: 0 !important;
+}
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+.pb-0 {
+    padding-bottom: 0 !important;
+}
+.circle-shape {
+    --border-radius: 50%;
+}
+.pagami-text-2nd{
+    color: var(--ion-color-pagami-text-2nd);
+}
+.btn-no-style {
+    --box-shadow: unset;
+    --background: transparent;
+
+}
+.btn-focus-circle {
+    // new
+    --border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.button-reload {
+    height: fit-content;
+    margin: 0;
+
+    .icon-reload {
+        color: #A0AEC0;
+        font-size: 20px;
+    }
+}
+
+
+.modal-fade{
+    opacity: 0;
+    animation-name: fade-in-out;
+    animation-duration: 6s;
+
+    @keyframes fade-in-out {
+        0%   { opacity: 0;}
+        20%  { opacity: 1;}
+        80%  { opacity: 1;}
+        100% { opacity: 0;}
+    }
+}
+
+.map-canvas {
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: whitesmoke;
+    transition: opacity 150ms ease-in;
+}
+
+a[rel='noopener'] div img, .gmnoprint {
+    opacity: 0;
+}
+
+.gm-style-iw, .gm-style-iw-c {
+    display: none;
+}
+
+

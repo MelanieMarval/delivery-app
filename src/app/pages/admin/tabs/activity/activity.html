@@ -1,0 +1,112 @@
+
+<ion-content>
+
+    <ion-list *ngIf="!loading && !error" class="h-100">
+
+        <div class="ion-margin avatar-container" >
+            <ion-avatar (click)="goToProfile()">
+                <ion-img src="assets/icon/pagami_icon_256px.png"></ion-img>
+            </ion-avatar>
+        </div>
+
+        <ion-item-group>
+            <ion-card button class="card-money">
+                <ion-card-header>
+                    <ion-card-title>$ 0.00</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    Ingresos Netos
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+
+        <app-background-empty *ngIf="empty" [title]="'Aun no hay registros'"
+                              [text]="'Cuando hayan movimientos los veras aqui'" [height]="55"></app-background-empty>
+
+        <ion-item-group *ngIf="!empty">
+            <ion-card class="card card-place"
+                      *ngFor="let register of registers"
+                      [button]="register.status !== STATUS.REJECTED"
+                      (click)="showDetails(register)">
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col size="10">
+                            <ion-card-subtitle>
+                                {{ register.createTime | date:'d/M/y'}} · {{ register.createTime | date:'shortTime'}} ·
+                                <span [classList]="['status--'+register.status | lowercase]">{{placeMessageStatus(register.status)}}</span>
+                            </ion-card-subtitle>
+                        </ion-col>
+                        <ion-col size="2">
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-avatar class="border-white-1px">
+                                <ion-img [src]="placeThumbnailPhoto(register)"></ion-img>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="7">
+                            <ion-card-title>{{register.status === STATUS.INCOMPLETE ? '' : register.name | capitalize}}</ion-card-title>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-text [class]="['status--'+register.status | lowercase]">
+                                {{register.status === STATUS.VERIFIED ? '$0.00 USD' : ''}}
+                            </ion-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+    </ion-list>
+
+    <ion-list *ngIf="loading || error">
+        <ion-item-group>
+            <ion-card class="card-money">
+                <ion-card-header>
+                    <ion-card-title><ion-skeleton-text [animated]="!error" style="width: 60%; height: 30px;"></ion-skeleton-text></ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-skeleton-text [animated]="!error" style="width: 40%"></ion-skeleton-text>
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+
+        <ion-item-group>
+            <ion-card class="card-place" *ngFor="let dummy of ' '.repeat(4).split('')">
+                <ion-card-header>
+                    <ion-row>
+                        <ion-col size="10">
+                            <ion-card-subtitle>
+                                <ion-skeleton-text [animated]="!error" style="width: 85%"></ion-skeleton-text>
+                            </ion-card-subtitle>
+                        </ion-col>
+                        <ion-col size="2">
+                        </ion-col>
+                    </ion-row>
+                </ion-card-header>
+
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="2">
+                            <ion-avatar class="border-white-1px">
+                                <ion-skeleton-text></ion-skeleton-text>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="7">
+                            <ion-skeleton-text [animated]="!error" style="width: 70%"></ion-skeleton-text>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-skeleton-text [animated]="!error" style="width: 80%"></ion-skeleton-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,25 @@
+.list-md {
+    padding: 8px;
+}
+
+.text-gray {
+    color: #A0AEC0;
+    font-size: 14px;
+}
+
+@media (max-width: 380px) {
+    .text-gray {
+        font-size: 12px;
+    }
+}
+
+.status {
+    font-size: 11px;
+    &--rejected, &--accepted {
+        position: relative;
+        bottom: -1.2px;
+    }
+}
+
+
+

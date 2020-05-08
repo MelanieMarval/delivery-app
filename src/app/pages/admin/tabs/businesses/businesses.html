@@ -1,0 +1,116 @@
+<div class="progress-bar-container">
+    <ion-progress-bar type="indeterminate" color="pagami" *ngIf="reloading"></ion-progress-bar>
+</div>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item-group *ngIf="!loading && !error && !empty">
+
+            <ion-card button class="ion-margin-bottom" color="pagami-surface">
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="10">
+                            <ion-text class="text-gray">Registradas</ion-text>
+                            <p>{{stats?.total}}</p>
+                        </ion-col>
+                        <ion-col size="2" class="d-flex ion-justify-content-end">
+                            <ion-button class="button-reload btn-no-style ion-no-padding" (click)="reload()">
+                                <ion-icon name="sync" class="icon-reload" slot="icon-only"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                        <ion-col size="4">
+                            <ion-text class="text-gray">Verificadas</ion-text>
+                            <p>{{stats?.verified}}</p>
+                        </ion-col>
+                        <ion-col size="5">
+                            <ion-text class="text-gray">No verificadas</ion-text>
+                            <p>{{stats?.accepted}}</p>
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-text class="text-gray">Vencidas</ion-text>
+                            <p>{{stats?.expired}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card class="card card-admin-3rows" button
+                      *ngFor="let register of placeSortData(registers)"
+                      (click)="goToDetails(register)">
+                <ion-card-content class="ion-no-padding">
+                    <ion-row>
+                        <ion-col size="2" class="ion-justify-content-center">
+                            <ion-avatar class="border-white-1px">
+                                <ion-img [src]="placeThumbnailPhoto(register)"></ion-img>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="10" class="">
+                            <ion-card-subtitle>
+                                {{getStatusSpanish(register)}}
+                            </ion-card-subtitle>
+                            <ion-card-title>
+                                {{register.name | capitalize}}
+                                <ion-icon *ngIf="register.status === STATUS.VERIFIED || register.status === STATUS.DISABLED" name="shield-checkmark" class="status status--verified"></ion-icon>
+                                <ion-icon *ngIf="register.status === STATUS.ACCEPTED && !register.claim" name="close-circle" class="status status--rejected"></ion-icon>
+                                <ion-icon *ngIf="register.status === STATUS.ACCEPTED && register?.claim?.status === STATUS.WAITING" name="time-outline" class="status status--accepted"></ion-icon>
+                            </ion-card-title>
+                            <ion-card-subtitle>
+                                Se unio el {{ register.createTime | date:'d MMMM'}} de {{ register.createTime | date:'y'}}
+                            </ion-card-subtitle>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+
+        <ion-item-group *ngIf="loading || error">
+            <ion-card class="ion-margin-bottom" color="pagami-surface">
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="12">
+                            <ion-skeleton-text [animated]="!error" style="width: 30%"></ion-skeleton-text>
+                        </ion-col>
+                        <ion-col size="4">
+                            <ion-skeleton-text [animated]="!error" style="width: 80%"></ion-skeleton-text>
+                        </ion-col>
+                        <ion-col size="4">
+                            <ion-skeleton-text [animated]="!error" style="width: 80%"></ion-skeleton-text>
+                        </ion-col>
+                        <ion-col size="4">
+                            <ion-skeleton-text [animated]="!error" style="width: 80%"></ion-skeleton-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card class="card card-admin-3rows" *ngFor="let dummy of ' '.repeat(5).split('')">
+                <ion-card-content class="ion-no-padding">
+                    <ion-row>
+                        <ion-col size="2" class="ion-justify-content-center">
+                            <ion-avatar class="border-white-1px">
+                                <ion-skeleton-text></ion-skeleton-text>
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="10" class="">
+                            <ion-card-subtitle style="width: 30%">
+                                <ion-skeleton-text [animated]="!error"></ion-skeleton-text>
+                            </ion-card-subtitle>
+                            <ion-card-title style="width: 60%">
+                                <ion-skeleton-text [animated]="!error"></ion-skeleton-text>
+                            </ion-card-title>
+                            <ion-card-subtitle style="width: 70%">
+                                <ion-skeleton-text [animated]="!error"></ion-skeleton-text>
+                            </ion-card-subtitle>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
+        </ion-item-group>
+
+    </ion-list>
+
+    <app-background-empty *ngIf="empty" [title]="'Aun no hay registros'"
+                          [text]="'Cuando hayan empresas se veran aqui'"></app-background-empty>
+
+</ion-content>

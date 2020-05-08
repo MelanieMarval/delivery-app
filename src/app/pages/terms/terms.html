@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar class="toolbar-simple">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tutorial"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Términos de Uso</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true">
+
+    <div class="terms-content">
+        <ion-text>
+            <h2 class="terms-subtitle">Terminación</h2>
+            <p class="terms-text">Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso </p>
+        </ion-text>
+        <ion-text>
+            <h2 class="terms-subtitle">Planes</h2>
+            <p class="terms-text">Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso </p>
+        </ion-text>
+        <ion-text>
+            <h2 class="terms-subtitle">Cambios</h2>
+            <p class="terms-text">Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso Lorem ipso </p>
+        </ion-text>
+    </div>
+
+</ion-content>
+
+<ion-footer class="footer-button">
+    <ion-item lines="none" class="checkbox-container">
+        <ion-checkbox color="pagami" slot="start" [(ngModel)]="termsAccepted"></ion-checkbox>
+        &nbsp; &nbsp;
+        <ion-label>Estoy de acuerdo con los términos y condiciones</ion-label>
+    </ion-item>
+    <ion-button class="button-large" expand="block" (click)="continueRegister()" [disabled]="!termsAccepted">
+        Continuar
+    </ion-button>
+</ion-footer>

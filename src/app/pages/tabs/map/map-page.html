@@ -1,0 +1,64 @@
+<ion-content class="close-to-me-scroll">
+
+    <ion-header class="header-search-map" [hidden]="isRegistering">
+        <ion-grid [class.unset]="bottomDrawer.showBackToolbar">
+            <ion-row>
+                <ion-col size="10">
+                    <ion-searchbar (ionInput)="onSearch($event)" (ionBlur)="onFocusExit()" placeholder="Busca tiendas o servicios" color="light" class="without-search-icon"></ion-searchbar>
+                </ion-col>
+                <ion-col size="2">
+                    <ion-button class="btn-no-style" (ionFocus)="switchTab()">
+                        <ion-icon class="card-i size-icon-default" name="swap-horizontal"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-header>
+
+    <ion-header *ngIf="isRegistering" class="header-search-map header-search-map--surface" [hidden]="!beforeSaveLocation">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="1">
+                    <ion-icon src="assets/icon/location-on.svg" class="size-icon-default"></ion-icon>
+                </ion-col>
+                <ion-col size="11">
+                    <ion-searchbar placeholder="Parate frente a la empresa y guarda la ubicacion" color="pagami-surface" class="without-search-icon" disabled></ion-searchbar>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-header>
+
+    <div class="background-sheet-header" [hidden]="!bottomDrawer.showBackToolbar"></div>
+
+    <div #mapCanvas class="map-canvas"></div>
+
+    <ion-fab #fab class="fab-corner-lr" horizontal="end" vertical="bottom" slot="fixed" [hidden]="isRegistering">
+        <ion-fab-button color="{{ fabAttached ? 'map':'light'}}" (click)="attachedPosition()">
+            <ion-icon src="assets/icon/my_location.svg"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div class="footer-button footer-button--div" *ngIf="isRegistering">
+        <ion-button [disabled]="saving" class="button-large" expand="block" (click)="saveLocation()" color="pagami" *ngIf="beforeSaveLocation">
+            <ion-spinner *ngIf="saving" class="spinner-energized"></ion-spinner>
+            <span *ngIf="!saving">Guardar ubicacion</span>
+        </ion-button>
+        <ion-button class="button-large" expand="block" (click)="navigateToBusinessDetails()" routerLink="/app/business-details" color="pagami" *ngIf="!beforeSaveLocation">
+            Continuar
+        </ion-button>
+    </div>
+
+</ion-content>
+
+<ion-bottom-drawer [disableDrag]="bottomDrawer.disableDrag" [(state)]="bottomDrawer.drawerState" [minimumHeight]="bottomDrawer.minimumHeight" (stateChange)="onDrawerStateChange($event)"
+                   [dockedHeight]="bottomDrawer.dockedHeight" [shouldBounce]="bottomDrawer.shouldBounce" [distanceTop]="bottomDrawer.distanceTop"
+                   (scrollContent)="onScrollContent($event)" [bottomHeightChange]="bottomHeightChange" (hideBottomSheet)="onBottomSheetHide($event)"
+                   (drawerPositionChange)="onDrawerPositionChange($event)" (disableScrollContent)="bottomDrawer.disableScrollContent = $event" class="nearby-drawer">
+    <div class="drawer-content nearby-expanded">
+        <div>
+            <app-nearby [drawerState]="bottomDrawer.drawerState" [selectedPlace]="selectedPlace" [nearPlaces]="nearPlaces" (changePlaceType)="onPlaceTypeChanged($event)"
+            [searching]="searching" [searchText]="searchText"></app-nearby>
+        </div>
+    </div>
+</ion-bottom-drawer>
+

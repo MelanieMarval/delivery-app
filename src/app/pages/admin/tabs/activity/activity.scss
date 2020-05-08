@@ -1,0 +1,83 @@
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    ion-avatar {
+        width: 50px;
+        height: 50px;
+        transition: .4s;
+        &:hover {
+            opacity: .7;
+        }
+    }
+}
+
+.list-md {
+    padding: 8px;
+}
+
+.item-activity {
+    color: #A0AEC0 !important;
+    font-size: 12px;
+    margin-left: 8px;
+    margin-right: 8px;
+
+    ion-icon {
+        width: 20px;
+    }
+
+    ion-icon.ios {
+        margin: 0;
+    }
+}
+
+ion-card-title {
+    font-size: 32px;
+    font-weight: normal;
+    color: #FFF;
+}
+
+.footer-button {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+/* *****STATUS CARDS***** */
+.status{
+    &--verified {
+        color: #68D391;
+    }
+    &--accepted {
+        color: #FBD38D;
+    }
+    &--waiting {
+        color: #999;
+    }
+    &--rejected {
+        color: #E53E3E;
+    }
+    &--transfer {
+        color: #63B3ED;
+    }
+    &--incomplete{
+        color: #ffbe25;
+    }
+}
+
+ion-text.status--verified {
+    color: #FFFFFF;
+
+    &:before {
+        content: "+";
+    }
+}
+ion-text.status--transfer {
+    color: #FFFFFF;
+
+    &:before {
+        content: "-";
+    }
+}
+
+

@@ -1,0 +1,22 @@
+<ion-tabs>
+
+    <ion-tab-bar slot="bottom">
+
+        <ion-tab-button tab="orders" class="tab-button" routerLink="/app/tabs/orders">
+            <ion-icon name="cart"></ion-icon>
+            <ion-label>Carrito</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="map/search" class="tab-button" (click)="openNearby()" [class.tab-selected]="currentUrl === 'search'">
+            <ion-icon name="compass"></ion-icon>
+            <ion-label>Buscar</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile" class="tab-button" routerLink="app/tabs/profile">
+            <ion-icon name="person-circle"></ion-icon>
+            <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+
+    </ion-tab-bar>
+
+</ion-tabs>

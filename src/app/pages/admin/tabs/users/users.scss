@@ -1,0 +1,15 @@
+.list-md {
+    padding: 8px;
+}
+
+.text-gray {
+    color: #A0AEC0;
+    font-size: 14px;
+}
+
+@media (max-width: 330px) {
+    .text-gray {
+        font-size: 12px;
+    }
+}
+
