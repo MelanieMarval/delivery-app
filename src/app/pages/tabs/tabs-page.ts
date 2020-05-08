@@ -32,8 +32,4 @@ export class TabsPage implements OnInit {
         this.notificationsProvider.getNotifications();
     }
 
-    openNearby() {
-        this.appService.showNearby.emit();
-    }
-
 }

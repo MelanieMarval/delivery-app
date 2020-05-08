@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { InputFilePage } from '../parent/InputFilePage';
-import { FireStorage } from '../../core/fire-storage/fire.storage';
-import { ValidationUtils } from '../../utils/validation.utils';
-// Services
-import { GeolocationService } from '../../core/geolocation/geolocation.service';
-// Providers
-import { StorageProvider } from '../../providers/storage.provider';
-import { ToastProvider } from '../../providers/toast.provider';
-import { UserIntentProvider } from '../../providers/user-intent.provider';
 import { AlertController } from '@ionic/angular';
-import { PlacesService } from '../../core/api/places/places.service';
-import { Place } from '../../core/api/places/place';
-import { PLACES } from '../../utils/Const';
+
+import { InputFilePage } from '../../parent/InputFilePage';
+import { ValidationUtils } from '../../../utils/validation.utils';
+
+// Services
+import { GeolocationService } from '../../../core/geolocation/geolocation.service';
+import { PlacesService } from '../../../core/api/places/places.service';
+import { FireStorage } from '../../../core/fire-storage/fire.storage';
+import { Place } from '../../../core/api/places/place';
+// Providers
+import { StorageProvider } from '../../../providers/storage.provider';
+import { ToastProvider } from '../../../providers/toast.provider';
+import { UserIntentProvider } from '../../../providers/user-intent.provider';
+import { PLACES } from '../../../utils/Const';
+
 
 @Component({
     selector: 'app-business-details',

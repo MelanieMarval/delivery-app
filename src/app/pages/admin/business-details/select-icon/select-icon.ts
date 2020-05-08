@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Place } from '../../../core/api/places/place';
-import { PlacesService } from '../../../core/api/places/places.service';
+import { PLACES } from '../../../../utils/Const';
 
+import { CATEGORY_ICONS } from '../../../../utils/category.icons';
+import { Place } from '../../../../core/api/places/place';
+import { PlacesService } from '../../../../core/api/places/places.service';
 // Providers
-import { StorageProvider } from '../../../providers/storage.provider';
-import { ToastProvider } from '../../../providers/toast.provider';
-import { UserIntentProvider } from '../../../providers/user-intent.provider';
-import { CATEGORY_ICONS } from '../../../utils/category.icons';
-import { PLACES } from '../../../utils/Const';
+import { ToastProvider } from '../../../../providers/toast.provider';
+import { StorageProvider } from '../../../../providers/storage.provider';
+import { UserIntentProvider } from '../../../../providers/user-intent.provider';
+
 
 @Component({
     selector: 'app-select-icon',

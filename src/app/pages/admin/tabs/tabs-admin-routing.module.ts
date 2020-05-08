@@ -22,8 +22,8 @@ const routes: Routes = [
                 loadChildren: () => import('./businesses/businesses.module').then(m => m.BusinessesModule)
             },
             {
-                path: 'records',
-                loadChildren: () => import('./records/records.module').then(m => m.RecordsModule)
+                path: 'map',
+                loadChildren: () => import('./map/map.module').then(m => m.MapModule)
             },
             {
                 path: 'users',
@@ -36,12 +36,8 @@ const routes: Routes = [
         component: UserProfilePage
     },
     {
-        path: 'records/claim/profile',
-        component: UserProfilePage
-    },
-    {
-        path: 'records/claim/details',
-        loadChildren: () => import('./record-details/record-details.module').then(m => m.RecordDetailsModule)
+        path: 'business-details',
+        loadChildren: () => import('./../business-details/business-details.module').then(m => m.BusinessDetailsModule)
     },
 
     {
